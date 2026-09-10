@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <title>Форма №1 | Лабораторна робота №1</title>
+</head>
+<body>
+  <header><p>Шкіндер Андрій Сергійович | Група КН31 | Варіант форми №1</p></header>
+  <main>
+    <p><a href="index.html">На головну сторінку</a></p>
+    <h1>Результати поточної сесії</h1>
+    <p>Заповніть дані про студента та навчальний контроль. Поля зі знаком * є обов’язковими.</p>
+    <form action="#" method="post">
+      <fieldset>
+        <legend>Дані про студента</legend>
+        <p><label for="full-name">ПІБ студента *:</label><br><input id="full-name" name="full-name" type="text" required></p>
+        <p><label for="group">Група *:</label><br><select id="group" name="group" required><option value="" selected disabled>Оберіть групу</option><option>КН31</option><option>КН32</option></select></p>
+        <p><label for="grade">Оцінка (0–100) *:</label><br><input id="grade" name="grade" type="number" min="0" max="100" step="1" required></p>
+        <p><label for="assessment-date">Дата проведення заліку / іспиту *:</label><br><input id="assessment-date" name="assessment-date" type="date" required></p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Дані про залік або іспит</legend>
+        <p><label for="subject">Дисципліна *:</label><br><select id="subject" name="subject" required><option value="" selected disabled>Оберіть дисципліну</option><option>Проєктування вебзастосунків</option><option>Алгоритми та структури даних</option><option>Бази даних</option><option>Комп’ютерні мережі</option></select></p>
+        <p>Вид контролю *:<br><label><input type="radio" name="assessment-type" value="credit" required> Залік</label><br><label><input type="radio" name="assessment-type" value="exam"> Іспит</label></p>
+        <p><label for="teacher">Прізвище викладача *:</label><br><input id="teacher" name="teacher" type="text" required></p>
+      </fieldset>
+
+      <p><button type="reset">Очистити</button> <button type="submit">Відправити дані</button></p>
+    </form>
+  </main>
+
+  <footer><p>Шкіндер Андрій Сергійович КН31</p></footer>
+</body>
+</html>
