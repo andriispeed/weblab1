@@ -1,0 +1,33 @@
+@import url("reset.css");
+@import url("base.css");
+@import url("header.css");
+@import url("menu.css");
+@import url("content.css");
+@import url("footer.css");
+
+/* Сторінка розміщується по центру */
+body {
+  display: flex;
+  justify-content: center;
+  background-color: #d0dcf5;
+  font-family: var(--font-text);
+}
+
+/* Контейнер фіксованої ширини */
+.container {
+  width: var(--width);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-size: var(--font-size-p);
+  line-height: 1.5;
+}
+
+/* Загальний стиль заголовків секцій */
+.section__title {
+  font-family: var(--font-title);
+  font-size: var(--font-size-h2);
+  color: var(--color-title);
+  margin-bottom: 20px;
+}
+
+

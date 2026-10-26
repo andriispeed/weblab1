@@ -1,0 +1,26 @@
+/* Скидання стандартних стилів браузера */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth; /* плавний перехід між блоками */
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+

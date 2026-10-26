@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>IT.SCHOOL — макети та UI-kit</title>
+  <style>
+    /* INJECT_FONT */
+    *{box-sizing:border-box}body{margin:0;background:#e9ebe4;color:#22231f;font-family:Inter,Arial,sans-serif}
+    .toolbar{position:sticky;top:0;z-index:10;padding:14px 24px;background:#22231f;color:white;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+    .toolbar strong{margin-right:auto;font-size:14px;letter-spacing:1px}.toolbar select,.toolbar button{padding:9px 12px;border:1px solid #64695d;border-radius:4px;background:#343a31;color:#fff;font:inherit;font-size:13px}
+    .toolbar button{cursor:pointer}.toolbar button:hover{background:#4c5348}.note{font-size:12px;color:#c9cebf;padding:0 24px 12px;background:#22231f}
+    #canvas{padding:40px 24px;overflow:auto;min-height:calc(100vh - 100px)}#artboard{margin:0 auto;box-shadow:0 8px 48px #22231f12}
+    .node{box-sizing:border-box;min-width:0;flex-shrink:0}.box{display:flex}.text{white-space:pre-wrap;overflow-wrap:normal}.interactive{cursor:pointer}.interactive:focus-visible{outline:3px solid #7a5c00;outline-offset:3px}
+    .kit{width:1440px;margin:auto;background:#fff}.kit-group{padding:24px 64px 48px}.kit-group h2{font-size:15px;color:#7a5c00}.kit-samples{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start}.kit-example{display:flex;flex-direction:column;gap:12px}.kit-example small{font-size:12px;color:#61635b}
+    @media(max-width:600px){.toolbar{padding:12px;gap:8px}.toolbar strong{width:100%}.note{padding:0 12px 12px}#canvas{padding:16px 0}}
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <strong>IT.SCHOOL / DESIGN PREVIEW</strong>
+    <select id="device" aria-label="Пристрій"><option>Desktop</option><option>Tablet</option><option>Mobile</option></select>
+    <select id="screen" aria-label="Сторінка"></select>
+    <button id="kit" type="button">UI-kit</button><button id="back" type="button">← Назад</button>
+  </div>
+  <div class="note">Перегляд макетів. Для редагованих шарів Figma запусти плагін IT School · Midterm Generator. Контент демонстраційний.</div>
+  <main id="canvas"><div id="artboard"></div></main>
+  <script>/* INJECT_APP */</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+import { build } from 'esbuild';
+import { writeFile, readFile, mkdir } from 'node:fs/promises';
+await build({ entryPoints: ['src/plugin.ts'], bundle: true, outfile: 'code.js', target: 'es2017', format: 'iife', legalComments: 'none' });
+await mkdir('qa', { recursive: true });
+await build({ entryPoints: ['src/design.ts'], bundle: true, outfile: 'qa/design.mjs', platform: 'node', format: 'esm' });
+const preview = await build({ entryPoints: ['src/preview.ts'], bundle: true, write: false, target: 'es2020', format: 'iife' });
+const template = await readFile('src/preview.html', 'utf8');
+const font = await readFile('assets/InterVariable.woff2');
+const fontCSS = `@font-face{font-family:Inter;src:url(data:font/woff2;base64,${font.toString('base64')}) format('woff2');font-weight:100 900;font-style:normal;font-display:block}`;
+await writeFile('preview.html', template.replace('/* INJECT_FONT */',fontCSS).replace('/* INJECT_APP */', preview.outputFiles[0].text), 'utf8');
+console.log('Built code.js and standalone preview.html');

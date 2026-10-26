@@ -1,0 +1,29 @@
+/* Головне меню */
+.menu {
+  width: var(--menu-width);
+  height: var(--top-height);
+  background-color: var(--color-title);
+  display: flex;
+  align-items: center;
+}
+
+.menu__list {
+  list-style: none;
+  width: 100%;
+}
+
+.menu__link {
+  display: block;
+  padding: 10px 40px;
+  font-size: var(--font-size-menu);
+  color: #fff;
+  transition: background-color 0.3s, color 0.3s, padding-left 0.3s;
+}
+
+/* Зміна пункту меню при наведенні */
+.menu__link:hover {
+  background-color: var(--color-accent-light);
+  color: var(--color-title);
+  text-decoration: underline;
+  padding-left: 56px;
+}

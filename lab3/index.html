@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Персональна сторінка студента: біографія, дисципліни, розклад занять, досягнення">
+  <meta name="author" content="Шкіндер Андрій Сергійович">
+  <title>Персональна сторінка студента</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container" id="top">
+
+    <!-- Верхній ряд: заголовок + меню -->
+    <div class="top-row">
+      <header class="header">
+        <h1 class="header__title">Шкіндер Андрій Сергійович</h1>
+        <p class="header__subtitle">Студент 3 курсу, група КН-31</p>
+      </header>
+
+      <nav class="menu">
+        <ul class="menu__list">
+          <li><a class="menu__link" href="#bio">Біографія</a></li>
+          <li><a class="menu__link" href="#subjects">Дисципліни</a></li>
+          <li><a class="menu__link" href="#schedule">Розклад занять</a></li>
+          <li><a class="menu__link" href="#achievements">Досягнення</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Вміст -->
+    <main class="content">
+
+      <section class="section" id="bio">
+        <h2 class="section__title">Біографія</h2>
+        <p>Мене звати Андрій Шкіндер. Народився у місті Вараш, навчався у школі №3, вступив до університету на спеціальність «Комп'ютерні науки».</p>
+        <p>Мрію працювати у сфері IT та розвивати власні проєкти.</p>
+      </section>
+
+      <section class="section" id="subjects">
+        <h2 class="section__title">Дисципліни в університеті</h2>
+        <ul class="subjects">
+          <li>Програмування
+            <ul>
+              <li>Основи програмування</li>
+              <li>Об'єктно-орієнтоване програмування</li>
+            </ul>
+          </li>
+          <li>Вища математика</li>
+          <li>Дискретна математика</li>
+          <li>Веб-технології та веб-дизайн</li>
+          <li>Бази даних</li>
+        </ul>
+      </section>
+
+      <section class="section" id="schedule">
+        <h2 class="section__title">Розклад занять</h2>
+        <table class="schedule">
+          <thead>
+            <tr>
+              <th>Пара</th>
+              <th>Понеділок</th>
+              <th>Вівторок</th>
+              <th>Середа</th>
+              <th>Четвер</th>
+              <th>П'ятниця</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1 (8:30)</td>
+              <td>Вища математика</td>
+              <td>-</td>
+              <td>Програмування</td>
+              <td>Бази даних</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>2 (10:10)</td>
+              <td>Програмування</td>
+              <td>Веб-технології</td>
+              <td>Дискретна математика</td>
+              <td>Вища математика</td>
+              <td>Веб-технології</td>
+            </tr>
+            <tr>
+              <td>3 (11:50)</td>
+              <td>-</td>
+              <td>Бази даних</td>
+              <td>Фізкультура</td>
+              <td>Дискретна математика</td>
+              <td>Програмування</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section" id="achievements">
+        <h2 class="section__title">Досягнення</h2>
+        <div class="cards">
+          <article class="card">
+            <h3>2023</h3>
+            <p>Призове місце у студентській олімпіаді з програмування</p>
+          </article>
+          <article class="card">
+            <h3>2024</h3>
+            <p>Сертифікат про проходження курсу з веб-розробки</p>
+          </article>
+        </div>
+      </section>
+
+    </main>
+
+
+
+    <!-- Нижній колонтитул -->
+    <footer class="footer">
+      <p>Контакти: Telegram: @andriisp3eed</p>
+    </footer>
+
+  </div>
+</body>
+</html>

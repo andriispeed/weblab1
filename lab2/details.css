@@ -1,0 +1,25 @@
+@import url(index.css);
+body {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px;
+  color: #222;
+  line-height: 1.65;
+}
+
+
+h1 { color: purple; }
+
+img { width: 280px; border-radius: 2px; }
+.left-image { float: left; }
+.right-image { float: right;}
+
+.first-paragraph { color: blue; text-decoration: underline; }
+.second-paragraph { font-weight: bold; }
+.third-paragraph::first-letter { font-size: 19px; }
+.third-paragraph { margin-bottom: 130px; }
+
+.green-sentence { color: green; }
+
+footer {
+  padding-top: 24px; }

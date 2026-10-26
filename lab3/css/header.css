@@ -1,0 +1,28 @@
+/* Верхній ряд: заголовок зліва, меню справа */
+.top-row {
+  display: flex;
+  height: var(--top-height);
+}
+
+.header {
+  width: var(--header-width);
+  height: var(--top-height);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 60px;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+  color: #fff;
+}
+
+.header__title {
+  font-family: var(--font-title);
+  font-size: var(--font-size-h1);
+  line-height: 1.2;
+}
+
+.header__subtitle {
+  margin-top: 10px;
+  font-size: 24px;
+  opacity: 0.9;
+}

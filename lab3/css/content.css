@@ -1,0 +1,82 @@
+/* Вміст сторінки */
+.content {
+  width: 100%;
+  padding: 40px 60px 0;
+}
+
+.section {
+  background-color: var(--color-block);
+  padding: 40px 50px;
+  margin-bottom: 40px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(28, 43, 90, 0.12);
+  /* щоб заголовок не ховався при переході за якорем */
+  scroll-margin-top: 20px;
+}
+
+/* Список дисциплін */
+.subjects {
+  padding-left: 30px;
+}
+
+.subjects li {
+  margin-bottom: 6px;
+}
+
+.subjects ul {
+  padding-left: 30px;
+  margin-top: 6px;
+}
+
+/* Розклад */
+.schedule {
+  width: 100%;
+  font-size: 18px;
+}
+
+.schedule th,
+.schedule td {
+  border: 1px solid var(--color-accent-light);
+  padding: 10px 12px;
+  text-align: center;
+}
+
+.schedule th {
+  background-color: var(--color-accent);
+  color: #fff;
+}
+
+.schedule tbody tr:hover {
+  background-color: #eef2ff;
+}
+
+/* Досягнення */
+.cards {
+  display: flex;
+  gap: 30px;
+}
+
+.card {
+  flex: 1;
+  padding: 24px;
+  border: 2px solid var(--color-accent-light);
+  border-radius: 10px;
+  transition: transform 0.3s, background-color 0.3s, color 0.3s;
+}
+
+.card h3 {
+  font-family: var(--font-title);
+  font-size: 30px;
+  color: var(--color-accent);
+  margin-bottom: 8px;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  background-color: var(--color-accent);
+  color: #fff;
+}
+
+.card:hover h3 {
+  color: #fff;
+}

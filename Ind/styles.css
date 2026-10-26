@@ -1,0 +1,118 @@
+/* CSS Variables & Reset */
+:root {
+  --color-primary: #7A5C00;
+  --color-primary-hover: #5A4400;
+  --color-primary-light: #FFF8E6;
+  --color-dark: #1F1F1F;
+  --color-bg: #FAF9F6;
+  --color-surface: #FFFFFF;
+  --color-text: #2D2D2D;
+  --color-text-muted: #6E6E6E;
+  --color-border: #E2DFD8;
+
+  --font-base: 'Inter', system-ui, -apple-system, sans-serif;
+  --container-width: 1200px;
+  --radius-base: 4px; /* Функціоналізм віддає перевагу чітким або мінімально закругленим кутам */
+  --gap-grid: 24px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-base);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+/* Layout Utilities */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Flexbox Header Navigation */
+.header {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: 16px 0;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--color-dark);
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: var(--color-primary);
+}
+
+/* Functional CSS Grid Layout */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-grid);
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  border: none;
+  padding: 12px 24px;
+  border-radius: var(--radius-base);
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+/* Media Queries for Tablet & Mobile */
+@media (max-width: 992px) {
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* В подальшому перетворити на бургер-меню */
+  }
+  
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}

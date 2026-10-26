@@ -1,0 +1,12 @@
+/* Нижній колонтитул */
+.footer {
+  clear: both;
+  width: var(--width);
+  height: var(--footer-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-footer);
+  color: #fff;
+  font-size: 18px;
+}
