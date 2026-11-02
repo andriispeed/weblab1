@@ -1,82 +1,89 @@
-/* Вміст сторінки */
 .content {
-  width: 100%;
-  padding: 40px 60px 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space);
+  padding: var(--space);
+  align-items: stretch;
 }
 
 .section {
+  min-width: 0;
+  padding: clamp(1rem, 2vw, 1.75rem);
   background-color: var(--color-block);
-  padding: 40px 50px;
-  margin-bottom: 40px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(28, 43, 90, 0.12);
-  /* щоб заголовок не ховався при переході за якорем */
-  scroll-margin-top: 20px;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.125rem 0.5rem rgb(28 43 90 / 12%);
+  scroll-margin-top: 1rem;
 }
 
-/* Список дисциплін */
-.subjects {
-  padding-left: 30px;
-}
+.section p + p { margin-top: 0.75rem; }
+.subjects, .subjects ul { padding-left: 1.5rem; }
+.subjects li { margin-bottom: 0.375rem; }
+.subjects ul { margin-top: 0.375rem; }
 
-.subjects li {
-  margin-bottom: 6px;
-}
-
-.subjects ul {
-  padding-left: 30px;
-  margin-top: 6px;
-}
-
-/* Розклад */
+.schedule-scroll { overflow-x: auto; }
+.schedule-hint { font-size: 0.875rem; margin-bottom: 0.75rem; }
 .schedule {
   width: 100%;
-  font-size: 18px;
+  min-width: 48rem;
+  overflow-wrap: normal;
+  font-size: 1rem;
 }
-
-.schedule th,
-.schedule td {
+.schedule caption {
+  padding-bottom: 0.75rem;
+  text-align: left;
+  font-weight: 600;
+}
+.schedule th, .schedule td {
   border: 1px solid var(--color-accent-light);
-  padding: 10px 12px;
+  padding: 0.75rem;
   text-align: center;
 }
-
-.schedule th {
+.schedule thead th {
   background-color: var(--color-accent);
   color: #fff;
 }
-
-.schedule tbody tr:hover {
-  background-color: #eef2ff;
+.schedule tbody th {
+  background-color: var(--color-bg);
+  white-space: nowrap;
 }
+.schedule tbody tr:hover { background-color: #eef2ff; }
 
-/* Досягнення */
 .cards {
-  display: flex;
-  gap: 30px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
 }
-
 .card {
-  flex: 1;
-  padding: 24px;
+  min-width: 0;
+  padding: 1.5rem;
   border: 2px solid var(--color-accent-light);
-  border-radius: 10px;
-  transition: transform 0.3s, background-color 0.3s, color 0.3s;
+  border-radius: 0.625rem;
+  transition: background-color 0.2s, color 0.2s;
 }
-
 .card h3 {
   font-family: var(--font-title);
-  font-size: 30px;
+  font-size: 1.875rem;
   color: var(--color-accent);
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
+}
+.card:hover { background-color: var(--color-accent); color: #fff; }
+.card:hover h3 { color: #fff; }
+.contacts address { font-style: normal; }
+.contacts a { color: var(--color-accent); text-decoration: underline; }
+
+@media (min-width: 768px) {
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .contacts {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .contacts .section__title { margin-bottom: 0; }
 }
 
-.card:hover {
-  transform: translateY(-8px);
-  background-color: var(--color-accent);
-  color: #fff;
-}
-
-.card:hover h3 {
-  color: #fff;
+@media (min-width: 1024px) {
+  .content { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #schedule, #achievements, .contacts { grid-column: 1 / -1; }
 }

@@ -12,13 +12,13 @@
   <div class="container" id="top">
 
     <!-- Верхній ряд: заголовок + меню -->
-    <div class="top-row">
-      <header class="header">
+    <header class="top-row">
+      <div class="header">
         <h1 class="header__title">Шкіндер Андрій Сергійович</h1>
         <p class="header__subtitle">Студент 3 курсу, група КН-31</p>
-      </header>
+      </div>
 
-      <nav class="menu">
+      <nav class="menu" aria-label="Основна навігація">
         <ul class="menu__list">
           <li><a class="menu__link" href="#bio">Біографія</a></li>
           <li><a class="menu__link" href="#subjects">Дисципліни</a></li>
@@ -26,10 +26,10 @@
           <li><a class="menu__link" href="#achievements">Досягнення</a></li>
         </ul>
       </nav>
-    </div>
+    </header>
 
     <!-- Вміст -->
-    <main class="content">
+    <main class="content" id="main-content">
 
       <section class="section" id="bio">
         <h2 class="section__title">Біографія</h2>
@@ -54,21 +54,24 @@
       </section>
 
       <section class="section" id="schedule">
-        <h2 class="section__title">Розклад занять</h2>
+        <h2 class="section__title" id="schedule-title">Розклад занять</h2>
+        <p class="schedule-hint" id="schedule-hint">На вузькому екрані прокручуйте таблицю горизонтально.</p>
+        <div class="schedule-scroll" role="region" aria-labelledby="schedule-title" aria-describedby="schedule-hint" tabindex="0">
         <table class="schedule">
+          <caption>Тижневий розклад занять групи КН-31</caption>
           <thead>
             <tr>
-              <th>Пара</th>
-              <th>Понеділок</th>
-              <th>Вівторок</th>
-              <th>Середа</th>
-              <th>Четвер</th>
-              <th>П'ятниця</th>
+              <th scope="col">Пара</th>
+              <th scope="col">Понеділок</th>
+              <th scope="col">Вівторок</th>
+              <th scope="col">Середа</th>
+              <th scope="col">Четвер</th>
+              <th scope="col">П'ятниця</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>1 (8:30)</td>
+              <th scope="row">1 (8:30)</th>
               <td>Вища математика</td>
               <td>-</td>
               <td>Програмування</td>
@@ -76,7 +79,7 @@
               <td>-</td>
             </tr>
             <tr>
-              <td>2 (10:10)</td>
+              <th scope="row">2 (10:10)</th>
               <td>Програмування</td>
               <td>Веб-технології</td>
               <td>Дискретна математика</td>
@@ -84,7 +87,7 @@
               <td>Веб-технології</td>
             </tr>
             <tr>
-              <td>3 (11:50)</td>
+              <th scope="row">3 (11:50)</th>
               <td>-</td>
               <td>Бази даних</td>
               <td>Фізкультура</td>
@@ -93,6 +96,7 @@
             </tr>
           </tbody>
         </table>
+        </div>
       </section>
 
       <section class="section" id="achievements">
@@ -109,13 +113,19 @@
         </div>
       </section>
 
+      <aside class="section contacts" aria-labelledby="contacts-title">
+        <h2 class="section__title" id="contacts-title">Контакти</h2>
+        <address>Telegram: <a href="https://t.me/andriisp3eed">@andriisp3eed</a></address>
+      </aside>
+
     </main>
 
 
 
     <!-- Нижній колонтитул -->
     <footer class="footer">
-      <p>Контакти: Telegram: @andriisp3eed</p>
+      <p>Персональна сторінка студента Андрій Шкіндер</p>
+      <a href="#top">На початок ↑</a>
     </footer>
 
   </div>

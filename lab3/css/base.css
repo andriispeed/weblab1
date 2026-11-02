@@ -1,13 +1,4 @@
-/* Базові налаштування (кастомні властивості) */
 :root {
-  /* Розміри */
-  --width: 1440px;
-  --header-width: 720px;
-  --menu-width: 720px;
-  --top-height: 250px;
-  --footer-height: 70px;
-
-  /* Кольори */
   --color-bg: #e8f0fe;
   --color-block: #ffffff;
   --color-accent: #3b5bdb;
@@ -15,14 +6,9 @@
   --color-title: #1c2b5a;
   --color-text: #3a3a3a;
   --color-footer: #1c2b5a;
-
-  /* Шрифти */
-  --font-title: "Georgia";
-  --font-text: "Segoe UI";
-
-  /* Розміри шрифтів */
-  --font-size-h1: 48px;
-  --font-size-h2: 36px;
-  --font-size-menu: 28px;
-  --font-size-p: 20px;
+  --font-size-h1: clamp(1.75rem, 1.2rem + 2vw, 2.75rem);
+  --font-size-h2: clamp(1.375rem, 1rem + 1vw, 1.875rem);
+  --font-size-menu: 1rem;
+  --font-size-p: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+  --space: clamp(1rem, 2vw, 1.75rem);
 }
