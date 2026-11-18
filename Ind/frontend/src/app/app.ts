@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, signal } from "@angular/core";
+import { Component, inject, signal } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
 import {
   NavigationEnd,
@@ -34,6 +34,12 @@ export class App {
           );
         first = false;
       });
+  }
+  skipToMain(event: Event) {
+    event.preventDefault();
+    const main = this.document.getElementById("main");
+    main?.focus();
+    main?.scrollIntoView({ block: "start" });
   }
   closeMenu(event: Event) {
     if (this.menu()) {

@@ -47,12 +47,12 @@ def main():
         environment=f'DB_PASSWORD={secrets.token_urlsafe(32)}\nADMIN_USERNAME=admin\nADMIN_INITIAL_PASSWORD={password}\nPUBLIC_URL=https://telegrambot.vps.webdock.cloud/it-school/\n'
         write_private(ROOT/'admin-access.json',json.dumps({'url':'https://telegrambot.vps.webdock.cloud/it-school/admin','username':'admin','password':password},indent=2))
     else: environment=re.sub(r'^RELEASE_ID=.*\n?','',previous_env,flags=re.M)
-    write_private(env_path,environment+f'RELEASE_ID={release_id}\n')
     write_private(ROOT/'backups'/f'nginx-{release_id}.conf',original_nginx)
     if old_release:
         with open(ROOT/'backups'/f'database-{release_id}.dump','wb') as backup:
             compose(old_release,'exec','-T','db','pg_dump','-U','it_school','-d','it_school','-Fc',stdout=backup)
     try:
+        write_private(env_path,environment+f'RELEASE_ID={release_id}\n')
         compose(release,'build','api')
         compose(release,'up','-d','--wait','--wait-timeout','150')
         with urllib.request.urlopen('http://127.0.0.1:3100/api/health',timeout=10) as r:

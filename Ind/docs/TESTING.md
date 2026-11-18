@@ -1,5 +1,9 @@
 # Перевірки IT.SCHOOL
 
+**18.11.2026:** production-збірки, повний HTTPS E2E, ізольований PostgreSQL integration test, перевірки Figma та GitHub Actions пройдені. У E2E — 40 публічних комбінацій сторінки/ширини й 4 ширини адмінпанелі, JavaScript-помилок не виявлено. Контрольний `pg_dump` відновлено в окрему БД; кількості записів і контрольна сума курсів збіглися. Власні тестові заявки видалено, ціну курсу відновлено; заявки від користувачів збережені.
+
+[Перевірки GitHub Actions](https://github.com/andriispeed/weblab1/actions/workflows/it-school.yml).
+
 ## Автоматичні перевірки
 
 - Production-збірки Angular і NestJS із TypeScript.
