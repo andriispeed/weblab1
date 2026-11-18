@@ -1,0 +1,101 @@
+<section class="section page-intro">
+  <div class="container">
+    <p class="eyebrow">КАТАЛОГ / 2026</p>
+    <h1 class="gradient-heading">Навички починаються<br />з вибору.</h1>
+    <p class="lead">
+      Обери курс під свої інтереси. Усі програми починаються з основ.
+    </p>
+  </div>
+</section>
+<section class="section catalog-section">
+  <div class="container">
+    <div class="catalog-tools">
+      <div class="filter-group" role="group" aria-label="Фільтр за напрямом">
+        <button
+          class="filter-button"
+          [attr.aria-pressed]="category()==='all'"
+          (click)="category.set('all')"
+        >
+          Усі курси
+        </button>
+        <button
+          class="filter-button"
+          [attr.aria-pressed]="category()==='dev'"
+          (click)="category.set('dev')"
+        >
+          Розробка
+        </button>
+        <button
+          class="filter-button"
+          [attr.aria-pressed]="category()==='qa'"
+          (click)="category.set('qa')"
+        >
+          Тестування
+        </button>
+      </div>
+      <div class="search-row">
+        <div class="field">
+          <label for="course-search">Пошук курсу або технології</label
+          ><input
+            id="course-search"
+            type="search"
+            placeholder="Наприклад, Python або SQL"
+            [ngModel]="query()"
+            (ngModelChange)="query.set($event)"
+          />
+        </div>
+        <div class="field">
+          <label for="course-sort">Порядок курсів</label
+          ><select
+            id="course-sort"
+            [ngModel]="sort()"
+            (ngModelChange)="sort.set($event)"
+          >
+            <option value="default">За напрямом</option>
+            <option value="price-asc">Ціна: від нижчої</option>
+            <option value="price-desc">Ціна: від вищої</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    @if(loading()){
+    <p class="state-message" role="status">Завантажуємо курси…</p>
+    } @else if(error()){
+    <div class="error-state" role="alert">
+      <p>{{error()}}</p>
+      <button class="button button--secondary" (click)="load()">
+        Спробувати ще раз
+      </button>
+    </div>
+    } @else {
+    <p class="result-count" role="status">
+      Знайдено: {{filtered().length}} · Онлайн · Для початківців
+    </p>
+    <div class="courses-grid">
+      @for(course of filtered();track course.id){<app-course-card
+        [course]="course"
+      />}
+    </div>
+    @if(!filtered().length){
+    <div class="empty-state">
+      <h2>Такого курсу поки немає</h2>
+      <p>Спробуй іншу назву або переглянь усі напрями.</p>
+      <button class="button button--secondary" (click)="reset()">
+        Скинути фільтри
+      </button>
+    </div>
+    } }
+  </div>
+</section>
+<section class="section surface">
+  <div class="container narrow-copy">
+    <h2 class="gradient-heading">Кожна програма — зрозумілий маршрут.</h2>
+    <p class="lead">
+      Подивись програму, навантаження та фінальний проєкт на сторінці курсу.
+      Якщо вагаєшся — почни з консультації.
+    </p>
+    <a class="button button--secondary" routerLink="/contact"
+      >Допоможіть обрати ↗</a
+    >
+  </div>
+</section>

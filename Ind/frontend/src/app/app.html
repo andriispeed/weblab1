@@ -1,0 +1,74 @@
+<a class="skip-link" href="#main">Перейти до вмісту</a>
+<header class="site-header" (keydown.escape)="closeMenu($event)">
+  <div class="container header-inner">
+    <a class="brand" routerLink="/" aria-label="IT.SCHOOL — головна"
+      ><span class="brand-mark" aria-hidden="true">it</span>IT.SCHOOL</a
+    >
+    <button
+      class="menu-toggle"
+      id="menu-toggle"
+      type="button"
+      [attr.aria-expanded]="menu()"
+      aria-controls="main-navigation"
+      [attr.aria-label]="menu() ? 'Закрити меню' : 'Відкрити меню'"
+      (click)="menu.set(!menu())"
+    >
+      <span aria-hidden="true">{{menu() ? '×' : '☰'}}</span>
+    </button>
+    <nav
+      class="main-navigation"
+      id="main-navigation"
+      [class.is-open]="menu()"
+      aria-label="Головна навігація"
+    >
+      <a
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact:true}"
+        ariaCurrentWhenActive="page"
+        >Головна</a
+      >
+      <a
+        routerLink="/courses"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Курси</a
+      >
+      <a
+        routerLink="/contact"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Контакти</a
+      >
+    </nav>
+    <a class="button header-cta" routerLink="/contact"
+      >Підібрати курс <span aria-hidden="true">↗</span></a
+    >
+  </div>
+</header>
+<main id="main" tabindex="-1"><router-outlet /></main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="footer-brand" routerLink="/">IT.SCHOOL</a>
+        <p>Практичні навички.<br />Зрозумілий шлях у професію.</p>
+      </div>
+      <nav aria-label="Навігація у футері">
+        <p class="eyebrow">НАВІГАЦІЯ</p>
+        <a routerLink="/courses">Усі курси</a
+        ><a routerLink="/contact">Зв’язатися з нами</a
+        ><a routerLink="/design">Дизайн-рішення · CR15</a>
+      </nav>
+      <div>
+        <p class="eyebrow">НАВЧАННЯ БЕЗ ЗАЙВОГО</p>
+        <p>Онлайн · Українською<br />Для початківців</p>
+        <a routerLink="/admin">Панель команди ↗</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 IT.SCHOOL · Навчальний проєкт</p>
+      <p>Шкіндер Андрій · Карпець Олександр · Хомяк Даря</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,37 @@
+# Дизайн і Figma
+
+Ця папка містить дизайн-частину. Angular і серверний код розташовані окремо в `../frontend` та `../backend`.
+
+| Файл / папка | Призначення |
+|---|---|
+| `tokens.json` | Спільні кольори, градієнти, типографіка та відступи |
+| `figma-plugin/manifest.json` | Генератор UI Kit, 12 макетів і 61 стану прототипу |
+| `figma-change-request/manifest.json` | Порівняння CR15 на копіях наявних фреймів |
+| `change-request.html` | Автономний браузерний перегляд із трьома режимами |
+
+## Для наявного Figma-файлу
+
+1. У Figma Desktop: **Plugins → Development → Import plugin from manifest**.
+2. Обери `C:\5sem\web\Ind\design\figma-change-request\manifest.json`.
+3. Виділи потрібний Desktop-фрейм або 4 фрейми сторінок.
+4. Запусти команду порівняння плагіна. Він створить копії: початкова, градієнт основного тексту та градієнт заголовків.
+5. Для фінальних макетів використовуй варіант **Headings / Компроміс**. Перевір переходи в Present.
+
+Генератор усіх макетів імпортується з `C:\5sem\web\Ind\design\figma-plugin\manifest.json`. Він створює нові секції поруч із наявними. Для збереження власних правок використовуй CR15-плагін на вибраних копіях.
+
+Переміщення папок на диску не змінює Figma-файл автоматично. Старий локальний manifest потрібно переімпортувати за новим шляхом.
+
+## Перевірки
+
+```powershell
+cd C:\5sem\web\Ind\design\figma-plugin
+npm ci
+npm run build
+npm run check
+node verify.mjs
+node verify-change-request.mjs
+```
+
+Перевірено 61 екран, 25 компонентів, 635 цілей переходів; 12 основних макетів × 3 режими CR15. Перевірки браузерного рендерингу та TypeScript не замінюють нативну перевірку у Figma. Посилання на командний Figma-файл ще потрібно додати в README.
+
+[Публічний перегляд](https://telegrambot.vps.webdock.cloud/it-school/design-preview/) · [UX-обґрунтування](../docs/CHANGE_REQUEST.md)

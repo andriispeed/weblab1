@@ -1,0 +1,12 @@
+qa/
+dist/
+node_modules/
+**/node_modules/
+**/dist/
+**/.angular/
+**/.env
+**/.env.*
+!**/.env.example
+.private/
+releases/
+*.log

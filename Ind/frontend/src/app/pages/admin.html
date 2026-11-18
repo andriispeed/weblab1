@@ -1,0 +1,250 @@
+<section class="section admin-section">
+  <div class="container">
+    <div class="admin-heading">
+      <div>
+        <p class="eyebrow">IT.SCHOOL / РОБОЧИЙ ПРОСТІР</p>
+        <h1 class="gradient-heading">Панель команди.</h1>
+        <p class="lead">Усе, що потрібно для наступного кроку студента.</p>
+      </div>
+      <button class="button button--secondary" (click)="logout()">
+        Вийти · {{state.session()?.username}}
+      </button>
+    </div>
+    @if(data();as d){
+    <div class="stats-grid">
+      <article>
+        <span>Усі заявки</span><strong>{{d.stats.total}}</strong>
+      </article>
+      <article class="stat-accent">
+        <span>Очікують відповіді</span><strong>{{d.stats.new}}</strong>
+      </article>
+      <article>
+        <span>Зв’язалися</span><strong>{{d.stats.contacted}}</strong>
+      </article>
+      <article>
+        <span>Зараховано</span><strong>{{d.stats.enrolled}}</strong>
+      </article>
+    </div>
+    }
+    <nav class="admin-tabs" aria-label="Розділи панелі">
+      <button
+        class="filter-button"
+        [attr.aria-pressed]="tab()==='applications'"
+        (click)="selectTab('applications')"
+      >
+        Заявки</button
+      ><button
+        class="filter-button"
+        [attr.aria-pressed]="tab()==='courses'"
+        (click)="selectTab('courses')"
+      >
+        Курси</button
+      ><button
+        class="filter-button"
+        [attr.aria-pressed]="tab()==='audit'"
+        (click)="selectTab('audit')"
+      >
+        Історія дій</button
+      ><a class="text-button" href="api/docs/" target="_blank" rel="noopener"
+        >Документація API ↗</a
+      >
+    </nav>
+    @if(error()){
+    <p class="form-error-summary" role="alert">{{error()}}</p>
+    } @if(notice()){
+    <p class="success-message" role="status">{{notice()}}</p>
+    } @if(loading()){
+    <p class="state-message" role="status">Оновлюємо дані…</p>
+    } @if(tab()==='applications'){
+    <form class="admin-filters" (ngSubmit)="filter()">
+      <div class="field">
+        <label for="application-search">Знайти заявку</label
+        ><input
+          id="application-search"
+          name="query"
+          [(ngModel)]="query"
+          maxlength="100"
+          type="search"
+          placeholder="Ім’я, email або курс"
+        />
+      </div>
+      <div class="field">
+        <label for="status-filter">Статус</label
+        ><select id="status-filter" name="status" [(ngModel)]="status">
+          <option value="">Усі статуси</option>
+          @for(s of statuses;track s.id){
+          <option [value]="s.id">{{s.label}}</option>
+          }
+        </select>
+      </div>
+      <button class="button" [disabled]="loading()">Застосувати</button
+      ><button
+        type="button"
+        class="button button--secondary"
+        (click)="load()"
+        [disabled]="loading()"
+      >
+        Оновити
+      </button>
+    </form>
+    @if(pendingDelete();as item){
+    <div class="delete-confirm" role="alert">
+      <p>
+        <strong>Видалити заявку від {{item.name}}?</strong> Контактні дані та
+        повідомлення буде видалено без можливості відновлення через панель.
+      </p>
+      <div class="action-row">
+        <button
+          class="button danger-button"
+          (click)="remove()"
+          [disabled]="!!busy()"
+        >
+          Так, видалити</button
+        ><button
+          class="button button--secondary"
+          (click)="pendingDelete.set(null)"
+        >
+          Скасувати
+        </button>
+      </div>
+    </div>
+    } @if(data();as d){
+    <p class="result-count">Знайдено заявок: {{d.total}}</p>
+    @if(!d.items.length && !loading()){
+    <div class="empty-state">
+      <h2>Тут починаються нові знайомства.</h2>
+      <p>
+        Коли хтось залишить заявку, вона з’явиться тут. Якщо встановлено фільтри
+        — спробуй змінити їх.
+      </p>
+      <a class="button button--secondary" routerLink="/contact"
+        >Відкрити форму ↗</a
+      >
+    </div>
+    } @if(d.items.length){
+    <div class="application-table">
+      <div class="table-head" aria-hidden="true">
+        <span>СТУДЕНТ</span><span>НАПРЯМ / ЗАПИТАННЯ</span><span>СТАТУС</span
+        ><span>ДІЇ</span>
+      </div>
+      @for(item of d.items;track item.id){
+      <article class="application-row" [attr.data-id]="item.id">
+        <div class="student-cell">
+          <h2>{{item.name}}</h2>
+          <a [href]="'mailto:'+item.email">{{item.email}}</a>
+          <p class="micro">{{item.createdAt | date:'dd.MM.yyyy, HH:mm'}}</p>
+          <p class="micro application-code">{{item.id.slice(0,8)}}</p>
+        </div>
+        <div class="request-cell">
+          <h3>{{item.courseTitle}}</h3>
+          <p>{{item.message || 'Без додаткових запитань'}}</p>
+        </div>
+        <div class="field status-cell">
+          <label [for]="'status-'+item.id" class="visually-hidden"
+            >Статус заявки {{item.name}}</label
+          ><select
+            [id]="'status-'+item.id"
+            [ngModel]="item.status"
+            (ngModelChange)="changeStatus(item,$event)"
+            [disabled]="!!busy()"
+            [attr.data-status]="item.status"
+          >
+            @for(s of statuses;track s.id){
+            <option [value]="s.id">{{s.label}}</option>
+            }
+          </select>
+        </div>
+        <button
+          class="text-button delete-button"
+          (click)="pendingDelete.set(item)"
+          [disabled]="!!busy()"
+          [attr.aria-label]="'Видалити заявку '+item.name"
+        >
+          Видалити
+        </button>
+      </article>
+      }
+    </div>
+    <div class="pagination">
+      <button
+        class="button button--secondary"
+        [disabled]="d.page<=1||loading()"
+        (click)="movePage(-1)"
+      >
+        ← Назад</button
+      ><span>{{d.page}} / {{d.pages}}</span
+      ><button
+        class="button button--secondary"
+        [disabled]="d.page>=d.pages||loading()"
+        (click)="movePage(1)"
+      >
+        Далі →
+      </button>
+    </div>
+    } } } @if(tab()==='courses'){
+    <div class="admin-courses">
+      @for(editor of editors();track editor.course.id){
+      <form
+        class="application-form"
+        [formGroup]="editor.form"
+        (ngSubmit)="save(editor)"
+      >
+        <div class="card-top">
+          <span class="eyebrow">КУРС / 0{{editor.course.position}}</span
+          ><a class="back-link" [routerLink]="['/courses',editor.course.id]"
+            >На сайті ↗</a
+          >
+        </div>
+        <h2 class="gradient-heading">{{editor.course.title}}</h2>
+        <div class="field">
+          <label [for]="'price-'+editor.course.id">Ціна за місяць, ₴</label
+          ><input
+            type="number"
+            min="0"
+            max="1000000"
+            step="1"
+            [id]="'price-'+editor.course.id"
+            formControlName="price"
+            required
+          />
+        </div>
+        <div class="field">
+          <label [for]="'description-'+editor.course.id">Короткий опис</label
+          ><textarea
+            [id]="'description-'+editor.course.id"
+            formControlName="description"
+            rows="4"
+            maxlength="500"
+            required
+          ></textarea>
+        </div>
+        <button class="button" [disabled]="!!busy()">
+          {{busy()===editor.course.id?'Зберігаємо…':'Зберегти зміни'}}
+        </button>
+      </form>
+      }
+    </div>
+    <button class="text-button" (click)="loadCourses()">
+      Оновити курси із сервера
+    </button>
+    } @if(tab()==='audit'){
+    <div class="audit-list">
+      @for(event of audit();track $index){
+      <article>
+        <div>
+          <strong>{{actionLabel(event.action)}}</strong>
+          <p class="micro">{{event.entityId}}</p>
+          <p class="micro">{{event.details | json}}</p>
+        </div>
+        <time>{{event.createdAt | date:'dd.MM.yyyy, HH:mm'}}</time>
+      </article>
+      }@empty{
+      <div class="empty-state">
+        <h2>Історія поки порожня.</h2>
+        <p>Зміни курсів і заявок відображатимуться тут.</p>
+      </div>
+      }
+    </div>
+    }
+  </div>
+</section>

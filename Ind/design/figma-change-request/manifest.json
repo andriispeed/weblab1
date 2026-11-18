@@ -1,0 +1,14 @@
+{
+  "name": "IT School · CR15 Gradient Text",
+  "id": "it-school-cr15-gradient-local",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figma"],
+  "documentAccess": "dynamic-page",
+  "networkAccess": {"allowedDomains": ["none"]},
+  "menu": [
+    {"name": "Порівняння: оригінал / повна вимога / компроміс", "command": "compare"},
+    {"name": "Копії з градієнтом усього основного тексту", "command": "full"},
+    {"name": "Копії з градієнтними заголовками", "command": "headings"}
+  ]
+}

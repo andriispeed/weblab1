@@ -1,0 +1,1 @@
+{"/it-school/api/**": {"target": "http://127.0.0.1:3100", "secure": false, "pathRewrite": {"^/it-school/api": "/api"}}}

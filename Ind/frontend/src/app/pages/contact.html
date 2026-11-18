@@ -1,0 +1,172 @@
+<section class="section page-intro">
+  <div class="container">
+    <p class="eyebrow">КОНТАКТИ ТА ЗАПИС</p>
+    <h1 class="gradient-heading">Почнемо з розмови.</h1>
+    <p class="lead">
+      Розкажи про свої цілі. Допоможемо обрати курс і відповімо на запитання.
+    </p>
+  </div>
+</section>
+<section class="section contact-section">
+  <div class="container contact-grid">
+    <div class="contact-information">
+      <h2 class="gradient-heading">Ми на зв’язку</h2>
+      <div class="contact-fact">
+        <p class="eyebrow">ФОРМАТ НАВЧАННЯ</p>
+        <p>Онлайн · Українською</p>
+      </div>
+      <div class="contact-fact">
+        <p class="eyebrow">ГРАФІК КОНСУЛЬТАЦІЙ</p>
+        <p>Пн–Пт · 09:00–18:00</p>
+      </div>
+      <div class="contact-fact">
+        <h3>Як проходить консультація</h3>
+        <ol class="plain-steps">
+          <li>Обговорюємо твій досвід</li>
+          <li>Порівнюємо напрями навчання</li>
+          <li>Плануємо наступний крок</li>
+        </ol>
+      </div>
+      <aside class="demo-note">
+        <strong>Навчальний проєкт</strong>
+        <p>
+          Заявка справді надсилається на сервер і доступна команді проєкту. Для
+          демонстрації використовуй вигадані дані. Оплати та автоматичних листів
+          немає.
+        </p>
+      </aside>
+    </div>
+    <div>
+      @if(receipt();as r){
+      <section
+        class="receipt"
+        id="receipt"
+        tabindex="-1"
+        aria-labelledby="receipt-title"
+      >
+        <span class="badge">ЗАЯВКУ ПРИЙНЯТО</span>
+        <h2 class="gradient-heading" id="receipt-title">
+          Перший крок зроблено.
+        </h2>
+        <p role="status">
+          Твоя заявка збережена на сервері. Команда може переглянути її в панелі
+          керування.
+        </p>
+        <dl>
+          <div>
+            <dt>Номер</dt>
+            <dd class="receipt-id">{{r.id}}</dd>
+          </div>
+          <div>
+            <dt>Дата</dt>
+            <dd>{{r.createdAt | date:'dd.MM.yyyy, HH:mm'}}</dd>
+          </div>
+        </dl>
+        <p class="micro">
+          Збережи номер для демонстрації. Автоматичний лист не надсилається.
+        </p>
+        <a class="button" routerLink="/courses">Повернутися до курсів ↗</a
+        ><button class="button button--secondary" (click)="another()">
+          Залишити ще одну заявку
+        </button>
+      </section>
+      } @else {
+      <form
+        class="application-form"
+        [formGroup]="form"
+        (ngSubmit)="submit()"
+        novalidate
+        [attr.aria-busy]="saving()"
+      >
+        <h2 class="gradient-heading">Заявка на консультацію</h2>
+        @if(error()){
+        <div class="form-error-summary" role="alert">{{error()}}</div>
+        }
+        <div class="field">
+          <label for="student-name">Твоє ім’я *</label
+          ><input
+            id="student-name"
+            formControlName="name"
+            autocomplete="given-name"
+            maxlength="80"
+            placeholder="Як до тебе звертатися?"
+            [attr.aria-invalid]="invalid('name')"
+            aria-describedby="name-error"
+          />
+          <p class="field-error" id="name-error" [hidden]="!invalid('name')">
+            Введи ім’я від 2 до 80 символів.
+          </p>
+        </div>
+        <div class="field">
+          <label for="student-email">Email *</label
+          ><input
+            id="student-email"
+            formControlName="email"
+            type="email"
+            autocomplete="email"
+            maxlength="160"
+            placeholder="you@example.com"
+            [attr.aria-invalid]="invalid('email')"
+            aria-describedby="email-error"
+          />
+          <p class="field-error" id="email-error" [hidden]="!invalid('email')">
+            Введи коректну email-адресу.
+          </p>
+        </div>
+        <div class="field">
+          <label for="student-course">Цікавить напрям</label
+          ><select id="student-course" formControlName="course">
+            <option value="consultation">Допоможіть обрати курс</option>
+            @for(c of courses();track c.id){
+            <option [value]="c.id">{{c.title}}</option>
+            }
+          </select>
+          @if(courseError()){
+          <p class="field-error">
+            Каталог недоступний. Можна залишити заявку на консультацію.
+          </p>
+          <button type="button" class="text-button" (click)="loadCourses()">
+            Оновити напрями</button
+          >}
+        </div>
+        <div class="field">
+          <label for="student-message"
+            >Твої запитання <span class="optional">(необов’язково)</span></label
+          ><textarea
+            id="student-message"
+            formControlName="message"
+            rows="3"
+            maxlength="1000"
+            placeholder="Що хочеш дізнатися про навчання?"
+          ></textarea>
+        </div>
+        <div class="consent-field">
+          <label for="student-consent"
+            ><input
+              id="student-consent"
+              type="checkbox"
+              formControlName="consent"
+              [attr.aria-invalid]="invalid('consent')"
+              aria-describedby="consent-error"
+            /><span
+              >Погоджуюся на збереження заявки на сервері та її перегляд
+              командою навчального проєкту. *</span
+            ></label
+          >
+          <p
+            class="field-error"
+            id="consent-error"
+            [hidden]="!invalid('consent')"
+          >
+            Підтвердь згоду перед надсиланням.
+          </p>
+        </div>
+        <button class="button" type="submit" [disabled]="saving()">
+          {{saving() ? 'Надсилаємо…' : 'Надіслати заявку ↗'}}
+        </button>
+        <p class="micro">* Обов’язкові поля. Жодних платежів чи підписок.</p>
+      </form>
+      }
+    </div>
+  </div>
+</section>

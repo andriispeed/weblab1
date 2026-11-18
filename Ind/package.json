@@ -1,0 +1,15 @@
+{
+  "name": "it-school",
+  "version": "2.0.0",
+  "private": true,
+  "workspaces": ["frontend", "backend"],
+  "scripts": {
+    "tokens": "node scripts/build-tokens.mjs",
+    "build": "npm run tokens && npm run build --workspace backend && npm run build --workspace frontend",
+    "start": "npm run start --workspace frontend",
+    "start:api": "npm run start --workspace backend",
+    "verify": "node scripts/verify-live.mjs",
+    "package": "node scripts/package-release.mjs"
+  },
+  "engines": {"node": ">=22.12.0"}
+}

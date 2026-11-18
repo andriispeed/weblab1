@@ -1,0 +1,108 @@
+<section class="section hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">ОНЛАЙН-ШКОЛА ПРАКТИЧНИХ IT-НАВИЧОК</p>
+      <h1 class="gradient-heading">Твій старт<br />в IT.<br />З практики.</h1>
+      <p class="lead">
+        Обери напрям, навчайся з ментором і створи проєкт, який покаже твої
+        навички.
+      </p>
+      <a class="button" routerLink="/courses"
+        >Обрати свій курс <span aria-hidden="true">↗</span></a
+      >
+      <p class="micro">Для початківців · Онлайн · Українською</p>
+    </div>
+    <aside class="learning-panel">
+      <div class="panel-top">
+        <p class="eyebrow">ТВІЙ НАСТУПНИЙ КРОК</p>
+        <span aria-hidden="true">↗</span>
+      </div>
+      <h2 class="gradient-heading">
+        Від першого рядка<br />до власного проєкту.
+      </h2>
+      <ol class="learning-steps">
+        <li>
+          <span class="step-number">01</span>
+          <div>
+            <h3>Розберися в основах</h3>
+            <p>Коротка теорія та зрозумілі приклади.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-number">02</span>
+          <div>
+            <h3>Спробуй на практиці</h3>
+            <p>Завдання з перевіркою від ментора.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-number">03</span>
+          <div>
+            <h3>Покажи результат</h3>
+            <p>Завершений проєкт у портфоліо.</p>
+          </div>
+        </li>
+      </ol>
+      <p class="panel-footer">НАВЧАЙСЯ · ПРАКТИКУЙ · СТВОРЮЙ</p>
+    </aside>
+  </div>
+</section>
+<section class="section essentials">
+  <div class="container benefits-grid">
+    <article>
+      <span class="eyebrow">01</span>
+      <h2>Практика з першого тижня</h2>
+      <p>Пиши код і розв’язуй реальні задачі.</p>
+    </article>
+    <article>
+      <span class="eyebrow">02</span>
+      <h2>Підтримка ментора</h2>
+      <p>Отримуй конкретний зворотний зв’язок.</p>
+    </article>
+    <article>
+      <span class="eyebrow">03</span>
+      <h2>Проєкт у портфоліо</h2>
+      <p>Збирай результат протягом навчання.</p>
+    </article>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">НАПРЯМИ НАВЧАННЯ</p>
+      <h2 class="gradient-heading">Знайди своє в IT.</h2>
+      <p class="lead">Три напрями. Конкретні навички. Твій перший результат.</p>
+    </div>
+    @if(loading()){
+    <p class="state-message" role="status">Завантажуємо курси…</p>
+    } @if(error()){
+    <div class="error-state" role="alert">
+      <p>{{error()}}</p>
+      <button class="button button--secondary" (click)="load()">
+        Спробувати ще раз
+      </button>
+    </div>
+    }
+    <div class="courses-grid">
+      @for(course of courses();track course.id){<app-course-card
+        [course]="course"
+      />}
+    </div>
+    <div class="section-action">
+      <a class="button button--secondary" routerLink="/courses"
+        >Переглянути всі курси <span aria-hidden="true">↗</span></a
+      >
+    </div>
+  </div>
+</section>
+<section class="section consultation">
+  <div class="container consultation-grid">
+    <div>
+      <h2 class="gradient-heading">Не знаєш, з чого почати?</h2>
+      <p>Розкажи про свої цілі — допоможемо обрати напрям.</p>
+    </div>
+    <a class="button" routerLink="/contact"
+      >Порадитися з нами <span aria-hidden="true">↗</span></a
+    >
+  </div>
+</section>

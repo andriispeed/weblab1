@@ -1,0 +1,137 @@
+@if(loading()){
+<section class="section">
+  <div class="container state-message" role="status">
+    Завантажуємо програму…
+  </div>
+</section>
+} @if(error()){
+<section class="section">
+  <div class="container empty-state" role="alert">
+    <h1>Не вдалося відкрити курс</h1>
+    <p>{{error()}}</p>
+    <a class="button" routerLink="/courses">До каталогу</a>
+  </div>
+</section>
+} @if(course(); as c){
+<section class="section page-intro">
+  <div class="container">
+    <a class="back-link" routerLink="/courses">← До каталогу курсів</a>
+    <div class="course-hero-grid">
+      <div class="course-intro">
+        <span class="badge">З НУЛЯ · ОНЛАЙН</span>
+        <h1 class="gradient-heading">{{c.title}}</h1>
+        <p class="lead">{{c.description}}</p>
+        <p class="course-technologies">{{c.tools}}</p>
+      </div>
+      <aside class="enrollment-card">
+        <p class="eyebrow">ТВІЙ НАСТУПНИЙ КРОК</p>
+        <p class="enrollment-price">
+          {{c.price | number}} ₴ <span>/ міс.</span>
+        </p>
+        <hr />
+        <p>
+          <strong>{{c.duration}} {{c.duration===5?'місяців':'місяці'}}</strong>
+          · 2 заняття на тиждень
+        </p>
+        <p>Живі онлайн-заняття, практичні роботи та підтримка ментора.</p>
+        <a class="button" routerLink="/contact" [queryParams]="{course:c.id}"
+          >Записатися на курс ↗</a
+        >
+        <p class="micro">Залиш заявку — узгодимо деталі навчання.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+<section class="section surface">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">РЕЗУЛЬТАТ НАВЧАННЯ</p>
+      <h2 class="gradient-heading">Те, що зможеш робити.</h2>
+      <p class="lead">Фінальний результат: {{c.project}}.</p>
+    </div>
+    <div class="benefits-grid">
+      <article>
+        <span class="eyebrow">01</span>
+        <h3>Розуміти інструменти</h3>
+        <p>Використовувати основні технології напряму.</p>
+      </article>
+      <article>
+        <span class="eyebrow">02</span>
+        <h3>Працювати самостійно</h3>
+        <p>Розбирати задачі та знаходити рішення.</p>
+      </article>
+      <article>
+        <span class="eyebrow">03</span>
+        <h3>Показувати результат</h3>
+        <p>Презентувати власний завершений проєкт.</p>
+      </article>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">ПРОГРАМА КУРСУ</p>
+      <h2 class="gradient-heading">Крок за кроком.</h2>
+      <p class="lead">
+        Чотири послідовні модулі — від основ до фінального проєкту.
+      </p>
+    </div>
+    <ol class="module-list">
+      @for(module of c.modules;track $index){
+      <li>
+        <span class="module-number">0{{$index+1}}</span>
+        <div>
+          <h3>{{module[0]}}</h3>
+          <p>{{module[1]}}</p>
+        </div>
+      </li>
+      }
+    </ol>
+  </div>
+</section>
+<section class="section surface">
+  <div class="container faq-grid">
+    <div>
+      <p class="eyebrow">ПЕРЕД СТАРТОМ</p>
+      <h2 class="gradient-heading">Відповіді<br />на запитання.</h2>
+    </div>
+    <div class="faq-list">
+      <details>
+        <summary>Чи потрібен досвід програмування?</summary>
+        <p>
+          Ні. Курси розраховані на початківців. Достатньо базових навичок роботи
+          з комп’ютером і готовності практикуватися.
+        </p>
+      </details>
+      <details>
+        <summary>Скільки часу потрібно на навчання?</summary>
+        <p>
+          Плануй два онлайн-заняття на тиждень і час на практичні завдання.
+          Точне навантаження залежить від обраного курсу.
+        </p>
+      </details>
+      <details>
+        <summary>Що залишиться після завершення?</summary>
+        <p>
+          Власний проєкт, практичні навички й матеріали курсу для повторення.
+          Працевлаштування не гарантується.
+        </p>
+      </details>
+    </div>
+  </div>
+</section>
+<section class="section consultation">
+  <div class="container consultation-grid">
+    <div>
+      <h2 class="gradient-heading">Навчайся з підтримкою.</h2>
+      <p>
+        Практикуйся, отримуй зворотний зв’язок і рухайся до власного результату.
+      </p>
+    </div>
+    <a class="button" routerLink="/contact" [queryParams]="{course:c.id}"
+      >Почати навчання ↗</a
+    >
+  </div>
+</section>
+}
