@@ -80,12 +80,6 @@ import { Component, signal } from "@angular/core";
         </div>
         <div class="section-action action-row">
           <a
-            class="button button--secondary"
-            href="design-preview/"
-            target="_blank"
-            rel="noopener"
-            >12 макетів та UI Kit ↗</a
-          ><a
             class="text-button"
             href="api/docs/"
             target="_blank"

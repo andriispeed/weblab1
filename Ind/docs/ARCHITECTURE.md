@@ -4,7 +4,7 @@
 
 ## Відповідальність частин
 
-- **design/** — UI Kit, макети, генератор Figma та порівняння CR15. `tokens.json` — джерело кольорів для плагіна й Angular.
+- **design/** — локальні матеріали макетів, які не публікуються на сайті. `tokens.json` — джерело кольорів Angular. Публічний `design-preview` вилучено 19.11.2026.
 - **frontend/** — Angular 20.3, standalone components, lazy routes, Reactive Forms, HttpClient, signals, SCSS. Основні сторінки й панель завантажуються окремими маршрутами.
 - **backend/** — NestJS, TypeScript, валідація DTO, серверні сесії, параметризований SQL через `pg`.
 - **infra/** — Docker Compose, Nginx include, пакетне розгортання з перевірками та резервні копії.

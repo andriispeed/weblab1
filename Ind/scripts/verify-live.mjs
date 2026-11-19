@@ -380,10 +380,9 @@ try {
   );
   await page.emulateMedia({ forcedColors: "none" });
   log("CR15 comparison and forced-colors fallback");
-  await page.goto(base + "design-preview/");
-  await page.locator('#artboard[data-screen="Desktop.home"]').waitFor();
-  assert((await page.locator(".cr-gradient").count()) > 0);
-  log("Published design preview loads under CSP");
+  for (const path of ["design-preview", "design-preview/", "design-preview/preview-0.js"])
+    assert.equal((await anonymous.get(path)).status(), 410);
+  log("Design preview is removed from public hosting");
   await page.goto(base + "api/docs/");
   await page.locator(".swagger-ui").first().waitFor();
   log("Published Swagger documentation");

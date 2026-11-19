@@ -1,4 +1,16 @@
 @use "styles/tokens";
+.footer-team {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #4c5348;
+  h2 { font-size: 16px; letter-spacing: 0; margin-bottom: 20px; }
+  ul { padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+  li { display: grid; align-content: start; gap: 8px; min-width: 0; }
+  strong { font-size: 14px; font-weight: 600; }
+  span { color: var(--dark-muted); font-size: 14px; }
+}
+@media (max-width: 1000px) { .footer-team ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .footer-team ul { grid-template-columns: 1fr; gap: 20px; } }
 app-root {
   display: flex;
   min-height: 100vh;

@@ -1,4 +1,4 @@
-import { mkdir, cp, readFile, writeFile } from "node:fs/promises";
+import { mkdir, cp, writeFile } from "node:fs/promises";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
@@ -23,26 +23,6 @@ await cp(resolve(root, "infra"), resolve(target, "infra"), {
   filter: (path) => !path.endsWith(".env"),
 });
 await cp(resolve(root, "infra/compose.yaml"), resolve(target, "compose.yaml"));
-await mkdir(resolve(target, "frontend/design-preview"), { recursive: true });
-// The standalone preview uses a generated inline script. Externalize it for CSP.
-let preview = await readFile(
-  resolve(root, "design/change-request.html"),
-  "utf8",
-);
-let index = 0;
-const scripts = [];
-preview = preview.replace(/<script>([\s\S]*?)<\/script>/g, (_, code) => {
-  const filename = `preview-${index++}.js`;
-  // Queue writes below so packaging finishes only after all files exist.
-  scripts.push([filename, code]);
-  return `<script src="${filename}" defer></script>`;
-});
-async function finish() {
-  for (const [name, code] of scripts)
-    await writeFile(resolve(target, "frontend/design-preview", name), code);
-}
-await finish();
-await writeFile(resolve(target, "frontend/design-preview/index.html"), preview);
 await writeFile(
   resolve(target, "release.json"),
   JSON.stringify(
